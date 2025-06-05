@@ -60,5 +60,25 @@
   </footer>
 
 </body>
+   <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert("Thank you for contacting us!");
+      return false;
+    }
+
+    function enlargeImage(img) {
+      if (img.style.transform === "scale(1.5)") {
+        img.style.transform = "scale(1)";
+      } else {
+        img.style.transform = "scale(1.5)";
+      }
+    }
+
+    function updateFooterDate() {
+      const yearSpan = document.getElementById("year");
+      yearSpan.textContent = new Date().getFullYear();
+    }
+  </script>
 </html>
 
