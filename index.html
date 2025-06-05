@@ -6,7 +6,7 @@
   <title>My HTML CSS Project</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="updateFooterDate()">
 
   <nav>
     <div class="logo">MyProject</div>
@@ -33,16 +33,16 @@
   <section id="gallery">
     <h2>Image Gallery</h2>
     <div class="gallery">
-      <img src="https://via.placeholder.com/200" alt="Image 1">
-      <img src="https://via.placeholder.com/200" alt="Image 2">
-      <img src="https://via.placeholder.com/200" alt="Image 3">
-      <img src="https://via.placeholder.com/200" alt="Image 4">
+      <img src="https://via.placeholder.com/200" alt="Image 1" onclick="enlargeImage(this)">
+      <img src="https://via.placeholder.com/200" alt="Image 2" onclick="enlargeImage(this)">
+      <img src="https://via.placeholder.com/200" alt="Image 3" onclick="enlargeImage(this)">
+      <img src="https://via.placeholder.com/200" alt="Image 4" onclick="enlargeImage(this)">
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact Us</h2>
-    <form>
+    <form onsubmit="return handleSubmit(event)">
       <input type="text" placeholder="Your Name" required>
       <input type="email" placeholder="Your Email" required>
       <textarea placeholder="Your Message" required></textarea>
@@ -51,7 +51,7 @@
   </section>
 
   <footer>
-    <p>© 2025 My Website</p>
+    <p>© <span id="year"></span> My Website</p>
     <div class="social-links">
       <a href="#">🌐 Facebook</a>
       <a href="#">🐦 Twitter</a>
@@ -59,8 +59,8 @@
     </div>
   </footer>
 
-</body>
-   <script>
+  <!-- Inline JavaScript -->
+  <script>
     function handleSubmit(event) {
       event.preventDefault();
       alert("Thank you for contacting us!");
@@ -80,5 +80,6 @@
       yearSpan.textContent = new Date().getFullYear();
     }
   </script>
-</html>
 
+</body>
+</html>
