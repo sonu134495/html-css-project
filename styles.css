@@ -144,6 +144,8 @@ section h2 {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
+
+
 /* Contact Form */
 form {
   display: flex;
@@ -244,4 +246,142 @@ footer {
   max-height: 90%;
   border-radius: 10px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+#ai-search {
+  padding: 40px;
+  text-align: center;
+  background-color: #e0f7fa; /* Light cyan background */
+  color: #006064; /* Dark cyan text */
+  border-radius: 12px; /* Rounded corners */
+  max-width: 600px;
+  margin: 40px auto; /* Center horizontally with margin */
+  box-shadow: 0 4px 12px rgba(0, 96, 100, 0.2);
+}
+#ai-search input {
+  padding: 12px;
+  width: 300px;
+  margin-top: 10px;
+  border: 2px solid #006064;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #004d40;
+}
+#ai-search button {
+  padding: 12px 24px;
+  background-color: #004d40;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+#ai-search button:hover {
+  background-color: #00251a;
+}
+.mic-btn {
+  font-size: 26px;
+  vertical-align: middle;
+  margin-left: 10px;
+  color: #004d40;
+}
+.mic-btn:hover {
+  color: #00251a;
+}
+#ai-search {
+  background-color: #e0f7fa; /* light blue/cyan background */
+}
+
+#ai-search {
+  padding: 40px;
+  text-align: center;
+  background-color: #e0f7fa; /* Light cyan background */
+  color: #006064; /* Dark cyan text */
+  border-radius: 12px; /* Rounded corners */
+  max-width: 600px;
+  margin: 40px auto; /* Center horizontally with margin */
+  box-shadow: 0 4px 12px rgba(0, 96, 100, 0.2);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+#ai-search input {
+  padding: 12px;
+  width: 300px;
+  margin-top: 10px;
+  border: 2px solid #006064;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #004d40;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+#ai-search input:focus {
+  border-color: #004d40;
+  outline: none;
+  color: #00251a;
+}
+
+#ai-search button {
+  padding: 12px 24px;
+  background-color: #004d40;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+#ai-search button:hover {
+  background-color: #00251a;
+}
+
+.mic-btn {
+  font-size: 26px;
+  vertical-align: middle;
+  margin-left: 10px;
+  color: #004d40;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.mic-btn:hover {
+  color: #00251a;
+}
+
+/* Dark Mode for AI Search */
+body.dark-mode #ai-search {
+  background-color: #004d40; /* Dark cyan background */
+  color: #a7ffeb; /* Light cyan text */
+  box-shadow: 0 4px 12px rgba(0, 77, 64, 0.6);
+}
+
+body.dark-mode #ai-search input {
+  border-color: #a7ffeb;
+  color: #b2dfdb;
+  background-color: #004d40;
+}
+
+body.dark-mode #ai-search input:focus {
+  border-color: #80cbc4;
+  color: #e0f2f1;
+}
+
+body.dark-mode #ai-search button {
+  background-color: #a7ffeb;
+  color: #004d40;
+}
+
+body.dark-mode #ai-search button:hover {
+  background-color: #80cbc4;
+}
+
+body.dark-mode .mic-btn {
+  color: #a7ffeb;
+}
+
+body.dark-mode .mic-btn:hover {
+  color: #80cbc4;
 }
