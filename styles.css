@@ -1,16 +1,18 @@
-/* General Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Font */
 body {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.6;
   background-color: #fff;
   color: #333;
   scroll-behavior: smooth;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Dark Mode */
@@ -24,7 +26,7 @@ body.dark-mode footer {
   background-color: #222;
 }
 
-/* Navigation */
+/* Navbar */
 nav {
   display: flex;
   justify-content: space-between;
@@ -54,18 +56,29 @@ nav ul li a {
   font-size: 1.2rem;
 }
 
-/* Hero Section */
+/* Header */
 header {
-  background: #444;
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
   color: white;
   padding: 4rem 2rem;
   text-align: center;
 }
 
-/* Section Styles */
+/* Sections */
 section {
   padding: 2rem;
   text-align: center;
+}
+
+/* About Section */
+.about-image {
+  margin-top: 1rem;
+}
+
+.about-image img {
+  width: 250px;
+  border-radius: 10px;
+  margin: 10px 0;
 }
 
 /* Gallery */
@@ -78,8 +91,8 @@ section {
 
 .gallery img {
   width: 200px;
-  transition: transform 0.3s;
   cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .gallery img:hover {
@@ -105,7 +118,7 @@ section {
   max-height: 90%;
 }
 
-/* Form */
+/* Contact Form */
 form {
   display: flex;
   flex-direction: column;
@@ -145,7 +158,7 @@ footer {
   color: white;
 }
 
-/* Scroll-to-top Button */
+/* Scroll to top */
 #scrollTopBtn {
   position: fixed;
   bottom: 30px;
