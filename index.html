@@ -59,6 +59,17 @@
       border: none;
       cursor: pointer;
     }
+    #show-more-btn {
+      margin-top: 15px;
+      padding: 10px 25px;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      display: none; /* initially hidden */
+    }
   </style>
 </head>
 <body onload="updateFooterDate()">
@@ -74,6 +85,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
+
   <!-- Main Content -->
   <header id="home">
     <div class="hero-text">
@@ -81,14 +93,16 @@
       <p>Building beautiful websites using only HTML and CSS.</p>
     </div>
   </header>
+
   <!-- ✅ AI Search directly below Nav -->
   <section id="ai-search">
     <h2>🔍 AI Image Search</h2>
-    <p>Enter a keyword to get 10 AI-suggested images from Unsplash:</p>
+    <p>Enter a keyword to get AI-suggested images from Unsplash:</p>
     <input type="text" id="ai-search-input" placeholder="e.g. Happy birthday" />
-    <button onclick="searchAIImages()">Search</button>
+    <button onclick="startSearch()">Search</button>
     <button class="mic-btn" onclick="startVoiceSearch()">🎤</button>
     <div id="ai-results-container"></div>
+    <button id="show-more-btn" onclick="loadMore()">Show More</button>
   </section>
 
   <section id="about">
@@ -147,24 +161,32 @@
       btn.style.display = window.scrollY > 300 ? "block" : "none";
     };
 
-    // 🧠 Fetch 10 images based on user query
-    function searchAIImages() {
-      const query = document.getElementById('ai-search-input').value;
-      if (!query.trim()) {
+    // Pagination variables
+    let currentPage = 1;
+    let currentQuery = "";
+
+    function startSearch() {
+      currentPage = 1;
+      currentQuery = document.getElementById('ai-search-input').value.trim();
+      if (!currentQuery) {
         alert("Please enter a search term.");
         return;
       }
+      document.getElementById('ai-results-container').innerHTML = ""; // Clear old results
+      document.getElementById('show-more-btn').style.display = 'none'; // Hide show more button initially
+      fetchImages();
+    }
 
-      fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=10&client_id=T6Xj5WKeHFmERlnzF7wnIpnqvpG5zZZGECqTVa6Yf_A`)
+    function fetchImages() {
+      fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(currentQuery)}&per_page=10&page=${currentPage}&client_id=T6Xj5WKeHFmERlnzF7wnIpnqvpG5zZZGECqTVa6Yf_A`)
         .then(response => response.json())
         .then(data => {
           const container = document.getElementById('ai-results-container');
-          container.innerHTML = ""; // Clear previous
           data.results.forEach(image => {
             const div = document.createElement("div");
             div.className = "ai-image-box";
             div.innerHTML = `
-              <img src="${image.urls.regular}" alt="${query}" />
+              <img src="${image.urls.regular}" alt="${currentQuery}" />
               <br/>
               <a href="${image.urls.full}" download target="_blank">
                 <button>⬇ Download</button>
@@ -172,11 +194,24 @@
             `;
             container.appendChild(div);
           });
+
+          // Show "Show More" button only if more pages exist
+          const showMoreBtn = document.getElementById('show-more-btn');
+          if (data.total_pages > currentPage) {
+            showMoreBtn.style.display = "inline-block";
+          } else {
+            showMoreBtn.style.display = "none";
+          }
         })
         .catch(error => {
           console.error("Error fetching image:", error);
           alert("Failed to fetch images. Try again.");
         });
+    }
+
+    function loadMore() {
+      currentPage++;
+      fetchImages();
     }
 
     // 🎤 Google Voice Search
@@ -193,7 +228,7 @@
       recognition.start();
       recognition.onresult = function(event) {
         input.value = event.results[0][0].transcript;
-        searchAIImages();
+        startSearch();
       };
       recognition.onerror = function(event) {
         alert("Voice search failed. Try again.");
